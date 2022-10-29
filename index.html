@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hexo</title>
+  <title>Dennis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+  <meta name="description" content="BUPT freshman">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dennis">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Dennis">
+<meta property="og:description" content="BUPT freshman">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="DennisBaiMu">
+<meta property="article:tag" content="blog,homework,trial">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Dennis" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -43,7 +46,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/assets/blogimg/a.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/"></a></h1>
@@ -77,7 +80,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/ZihanQ" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
@@ -101,7 +104,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/assets/blogimg/a.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author"></h1>
@@ -118,7 +121,7 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/ZihanQ" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
@@ -151,6 +154,75 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-blog-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/10/29/blog-2/">blog_2</a>
+    </h1>
+  
+
+        
+        <a href="/2022/10/29/blog-2/" class="archive-article-date">
+  	<time datetime="2022-10-29T13:28:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="初学完-01-背包和完全背包后一点总结"><a href="#初学完-01-背包和完全背包后一点总结" class="headerlink" title="初学完 01 背包和完全背包后一点总结."></a>初学完 01 背包和完全背包后一点总结.</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//1:01背包:</span><br><span class="line">for(int i=1;i&lt;=n;i++)</span><br><span class="line">    for(int j=m;j&gt;=v[i];j--)</span><br><span class="line">        f[j]=max(f[j],f[j-v[i]]+w[i]);</span><br><span class="line">//2:完全背包:</span><br><span class="line">for(int i=1;i&lt;=n;i++)</span><br><span class="line">    for(int j=v[i];j&lt;=m;j++)</span><br><span class="line">        f[j]=max(f[j],f[j-v[i]]+w[i]);</span><br></pre></td></tr></table></figure>
+
+<p>两者粗看完全一样，实则有所区别：<br>内层循环中 j 循环的顺序分别为正序和倒序</p>
+<p>解释原因前，我们先看两者优化前的代码:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//1.01背包:</span><br><span class="line"> for(int i=1;i&lt;=n;i++)</span><br><span class="line">    for(int j=1;j&lt;=m;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        f[i][j]=f[i-1][j];</span><br><span class="line">        if(v[i]&lt;=j)f[i][j]=max(f[i][j],f[i-1][j-v[i]]+w[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//2.完全背包:</span><br><span class="line">for(int i=1;i&lt;=n;i++)</span><br><span class="line">    for(int j=1;j&lt;=m;j++)</span><br><span class="line">        &#123;</span><br><span class="line">        f[i][j]=f[i-1][j];</span><br><span class="line">        if(v[i]&lt;=j)f[i][j]=max(f[i][j],f[i][j-v[i]]+w[i]);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看见，两者取 max 时的第二个数有所不同:<br>在 01 背包中是 f[i-1]j-v[i]]+w[i];<br>在完全背包中是 f[i]j-v[i]]+w[i];<br>而优化后我们仅用一维数组 f[N]（下标是体积）来存最大值，很关键的是 j-v[i]&lt;j，因此当我们正序遍历 j 时，我们遍历到 f[j]时要调用 f[j-v[i]],但在外循环为 i 层时 f[j-v[i]]在 f[j]之前已经遍历过了,<br>且(f[j])更新为 maxf[i]j-v[i]]而不再是 maxf[i-1]j-v[i]]，完全背包正好需要的是 f[i]j-v[i]]，所以完全背包正序遍历 j。<br>当我们逆序遍历 j 时，我们遍历到 f[j]时要调用 f[j-v[i],而 f[i]j-v[i]]还未被遍历，故 f[j-v[i]]依然保存的是 maxf[i-1]j-v[i]],因此逆序遍历适用于 01 背包。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/10/29/blog-2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-blog-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -216,81 +288,6 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/10/29/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2022/10/29/hello-world/" class="archive-article-date">
-  	<time datetime="2022-10-29T12:01:21.524Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-10-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/10/29/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -301,7 +298,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 John Doe
+    		&copy; 2022 DennisBaiMu
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -432,23 +429,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+              <a href="https://minghuizhou.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+              <a href="https://codeforces.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>codeforces</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+              <a href="https://github.com/ZihanQ" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>my_github</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+              <a href="https://acwing.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>算法学习平台</a>
             </li>
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+              <a href="https://kkjiang.cc" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>dalao博客</a>
             </li>
           
             <li class="search-li">
@@ -463,7 +460,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家&lt;br&gt;&lt;br&gt;2022.10.29&lt;br&gt;邱梓涵</div>
   	  	
     	</section>
     
